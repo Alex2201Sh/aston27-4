@@ -20,20 +20,20 @@ VALUES (1, 'Administrator'),
        (10, 'Warehouseman');
 
 INSERT INTO employees (id, name, surname, telephone, department_id)
-VALUES (1, 'Ivan', 'Ivanov', '+3752912345678', 1),
-       (2, 'Fedor', 'Fedorov', '+3752922345678', 2),
-       (3, 'Igor', 'Petrov', '+3752915345678', 3),
-       (4, 'John', 'Cena', '+3752917345678', 4),
-       (5, 'Jack', 'Vorobei', '+3752919345678', 5),
-       (6, 'John', 'Connor', '+3752911245678', 6),
-       (7, 'Lebron', 'James', '+3752912645678', 7),
-       (8, 'Hanna', 'Schmitz', '+3752912945678', 1),
-       (9, 'Angela', 'Cullen', '+3752912045678', 2),
-       (10, 'Steve', 'Rogers', '+3752912345278', 3),
-       (11, 'Natasha', 'Romanov', '+3752912345378', 4),
-       (12, 'Bruce', 'Banner', '+3752912345778', 5),
-       (13, 'Angelina', 'Jolie', '+3752912345078', 6),
-       (14, 'Sasha', 'Grey', '+3752912345671', 7);
+VALUES (1, 'TESTIvan', 'TESTIvanov', '+3752912345678', 1),
+       (2, 'TESTFedor', 'TESTFedorov', '+3752922345678', 2),
+       (3, 'TESTIgor', 'TESTPetrov', '+3752915345678', 3),
+       (4, 'TESTJohn', 'TESTCena', '+3752917345678', 4),
+       (5, 'TESTJack', 'TESTVorobei', '+3752919345678', 5),
+       (6, 'TESTJohn', 'TESTConnor', '+3752911245678', 6),
+       (7, 'TESTLebron', 'TESTJames', '+3752912645678', 7),
+       (8, 'TESTHanna', 'TESTSchmitz', '+3752912945678', 1),
+       (9, 'TESTAngela', 'TESTCullen', '+3752912045678', 2),
+       (10, 'TESTSteve', 'TESTRogers', '+3752912345278', 3),
+       (11, 'TESTNatasha', 'TESTRomanov', '+3752912345378', 4),
+       (12, 'TESTBruce', 'TESTBanner', '+3752912345778', 5),
+       (13, 'TESTAngelina', 'TESTJolie', '+3752912345078', 6),
+       (14, 'TESTSasha', 'TESTGrey', '+3752912345671', 7);
 
 INSERT INTO employees_positions (employee_id, position_id)
 VALUES (1, 1),

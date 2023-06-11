@@ -1,7 +1,6 @@
 package by.shumilov.bean;
 
 import java.util.List;
-import java.util.Objects;
 
 public class Employee extends BaseEntity {
     private String firstName;
@@ -13,11 +12,12 @@ public class Employee extends BaseEntity {
     public Employee() {
     }
 
-    public Employee(String firstName, String surname, String telephone, Department department) {
+    public Employee(String firstName, String surname, String telephone, Department department, List<Position> positionList) {
         this.firstName = firstName;
         this.surname = surname;
         this.telephone = telephone;
         this.department = department;
+        this.positionList = positionList;
     }
 
     public String getFirstName() {
@@ -52,6 +52,14 @@ public class Employee extends BaseEntity {
         this.department = department;
     }
 
+    public List<Position> getPositionList() {
+        return positionList;
+    }
+
+    public void setPositionList(List<Position> positionList) {
+        this.positionList = positionList;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -61,27 +69,5 @@ public class Employee extends BaseEntity {
                 ", department=" + department +
                 ", id=" + id +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Employee employee = (Employee) o;
-
-        if (!Objects.equals(firstName, employee.firstName)) return false;
-        if (!Objects.equals(surname, employee.surname)) return false;
-        if (!Objects.equals(telephone, employee.telephone)) return false;
-        return Objects.equals(department, employee.department);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = firstName != null ? firstName.hashCode() : 0;
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
-        result = 31 * result + (department != null ? department.hashCode() : 0);
-        return result;
     }
 }

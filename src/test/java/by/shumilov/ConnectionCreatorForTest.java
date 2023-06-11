@@ -1,4 +1,4 @@
-package by.shumilov.dao.db;
+package by.shumilov;
 
 import java.io.File;
 import java.io.FileReader;
@@ -10,23 +10,23 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class ConnectionCreator {
+public class ConnectionCreatorForTest {
     private static final Properties properties = new Properties();
     private static final String DATABASE_URL;
 
     static {
         try {
-            properties.load(new FileReader(getFileFromResource("database.properties")));
+            properties.load(new FileReader(getFileFromResource("test_database.properties")));
             String driverName = (String) properties.get("db.driver");
             Class.forName(driverName);
         } catch (ClassNotFoundException | IOException | URISyntaxException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // fatal exception
         }
 
         DATABASE_URL = (String) properties.get("db.url");
     }
 
-    private ConnectionCreator() {
+    private ConnectionCreatorForTest() {
     }
 
     public static Connection createConnection() throws SQLException {
@@ -35,7 +35,7 @@ public class ConnectionCreator {
 
     public static File getFileFromResource(final String fileName)
             throws URISyntaxException {
-        ClassLoader classLoader = ConnectionCreator.class.getClassLoader();
+        ClassLoader classLoader = ConnectionCreatorForTest.class.getClassLoader();
         URL resource = classLoader.getResource(fileName);
         if (resource != null) {
             return new File(resource.toURI());

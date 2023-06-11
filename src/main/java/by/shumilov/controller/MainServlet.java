@@ -75,7 +75,6 @@ public class MainServlet extends HttpServlet {
             return;
         }
         Employee employee = getEmployeeFromRequest(request);
-        ;
         employee.setId(employeeId);
         employeeService.update(employee);
         sendAsJson(response, employee);

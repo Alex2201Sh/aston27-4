@@ -33,6 +33,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 departmentById = new Department();
+                departmentById.setId(resultSet.getInt("id"));
                 departmentById.setName(resultSet.getString("name"));
             }
         } catch (SQLException e) {

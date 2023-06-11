@@ -1,0 +1,57 @@
+package by.shumilov.service.impl;
+
+import by.shumilov.bean.Position;
+import by.shumilov.dao.PositionDao;
+import by.shumilov.dao.exception.DaoException;
+import by.shumilov.dao.impl.PositionDaoImpl;
+import by.shumilov.service.PositionService;
+
+import java.util.List;
+
+public class PositionServiceImpl implements PositionService {
+
+    private final PositionDao positionDao = new PositionDaoImpl();
+
+    @Override
+    public List<Position> findAll() {
+        return null;
+    }
+
+    @Override
+    public Position findEntityById(Integer id) {
+        try {
+            return positionDao.findEntityById(id);
+        } catch (DaoException e) {
+            throw new RuntimeException("Position with id: " + id + " doesn't exist. " + e);
+        }
+    }
+
+    @Override
+    public boolean delete(Position position) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(Integer id) {
+        return false;
+    }
+
+    @Override
+    public boolean create(Position position) {
+        return false;
+    }
+
+    @Override
+    public Position update(Position position) {
+        return null;
+    }
+
+    @Override
+    public List<Position> findPositionByEmployeeId(int employeeId) {
+        try {
+            return positionDao.findPositionByEmployeeId(employeeId);
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}

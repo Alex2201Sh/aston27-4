@@ -12,21 +12,15 @@ import java.util.List;
 
 public class EmployeeDaoImpl implements EmployeeDao {
     private static final String SQL_SELECT_ALL_EMPLOYEES =
-            "SELECT e.id, e.name, e.surname, e.telephone" +
-                    ", d.id as department_id, d.name as department_name " +
-                    "FROM public.employees e " +
-                    "JOIN public.departments d on e.department_id = d.id;";
+            "SELECT e.id, e.name, e.surname, e.telephone, e.department_id " +
+                    "FROM public.employees e;";
     private static final String SQL_SELECT_EMPLOYEE_BY_ID =
-            "SELECT e.id, e.name, e.surname, e.telephone" +
-                    ", d.id as department_id, d.name as department_name " +
+            "SELECT e.id, e.name, e.surname, e.telephone, e.department_id " +
                     "FROM public.employees e " +
-                    "JOIN public.departments d on e.department_id = d.id " +
                     "WHERE e.id = ?;";
     private static final String SQL_SELECT_EMPLOYEE_BY_SURNAME =
-            "SELECT e.id, e.name, e.surname, e.telephone, " +
-                    "d.id as department_id, d.name as department_name " +
+            "SELECT e.id, e.name, e.surname, e.telephone, e.department_id " +
                     "FROM public.employees e " +
-                    "JOIN public.departments d on e.department_id = d.id " +
                     "WHERE surname = ?;";
     private static final String SQL_DELETE_EMPLOYEE_BY_ID =
             "DELETE FROM employees WHERE id = ?;";
@@ -189,7 +183,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
         employee.setTelephone(resultSet.getString("telephone"));
         Department department = new Department();
         department.setId(resultSet.getInt("department_id"));
-        department.setName(resultSet.getString("department_name"));
         employee.setDepartment(department);
     }
 }
