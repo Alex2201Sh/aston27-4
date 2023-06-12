@@ -1,23 +1,23 @@
 INSERT INTO departments (id, name)
-VALUES (1, 'Administration'),
-       (2, 'Marketing'),
-       (3, 'Sales'),
-       (4, 'After sales'),
-       (5, 'Human resources'),
-       (6, 'Accountants'),
-       (7, 'Warehouse');
+VALUES (1, 'TESTAdministration'),
+       (2, 'TESTMarketing'),
+       (3, 'TESTSales'),
+       (4, 'TESTAfter sales'),
+       (5, 'TESTHuman resources'),
+       (6, 'TESTAccountants'),
+       (7, 'TESTWarehouse');
 
 INSERT INTO positions (id, name)
-VALUES (1, 'Administrator'),
-       (2, 'Marketing specialist'),
-       (3, 'Salesman'),
-       (4, 'Senior salesman'),
-       (5, 'Guarantee manager'),
-       (6, 'Mechanic'),
-       (7, 'HR specialist'),
-       (8, 'Accountant'),
-       (9, 'Chief accountant'),
-       (10, 'Warehouseman');
+VALUES (1, 'TESTAdministrator'),
+       (2, 'TESTMarketing specialist'),
+       (3, 'TESTSalesman'),
+       (4, 'TESTSenior salesman'),
+       (5, 'TESTGuarantee manager'),
+       (6, 'TESTMechanic'),
+       (7, 'TESTHR specialist'),
+       (8, 'TESTAccountant'),
+       (9, 'TESTChief accountant'),
+       (10, 'TESTWarehouseman');
 
 INSERT INTO employees (id, name, surname, telephone, department_id)
 VALUES (1, 'TESTIvan', 'TESTIvanov', '+3752912345678', 1),

@@ -42,32 +42,42 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employeeById;
         try {
             employeeById = employeeDao.findEntityById(id);
-            employeeById.setDepartment(departmentService
-                    .findEntityById(
-                            employeeById.getDepartment().getId()));
-            employeeById.setPositionList(positionService.findPositionByEmployeeId(id));
+            if (employeeById != null) {
+                employeeById.setDepartment(departmentService
+                        .findEntityById(
+                                employeeById.getDepartment().getId()));
+                employeeById.setPositionList(positionService.findPositionByEmployeeId(id));
+            }
         } catch (DaoException e) {
-            throw new RuntimeException("id " + id + " is not exists. " + e);
+            throw new RuntimeException(e);
         }
         return employeeById;
     }
 
     @Override
     public boolean delete(Employee employee) {
+        boolean result;
         try {
-            return employeeDao.delete(employee);
+            boolean a = employeeDao.deleteEmployeeFromEmployeesPositionsTable(employee.getId());
+            boolean b = employeeDao.delete(employee);
+            result = a && b;
         } catch (DaoException e) {
             throw new RuntimeException("Something went wrong with employee: " + employee + ". " + e);
         }
+        return result;
     }
 
     @Override
     public boolean delete(Integer id) {
+        boolean result;
         try {
-            return employeeDao.delete(id);
+            boolean a = employeeDao.deleteEmployeeFromEmployeesPositionsTable(id);
+            boolean b = employeeDao.delete(id);
+            result = a && b;
         } catch (DaoException e) {
             throw new RuntimeException("Something went wrong with employee with id: " + id + ". " + e);
         }
+        return result;
     }
 
     @Override

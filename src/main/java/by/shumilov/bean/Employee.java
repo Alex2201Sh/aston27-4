@@ -1,6 +1,7 @@
 package by.shumilov.bean;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Employee extends BaseEntity {
     private String firstName;
@@ -69,5 +70,25 @@ public class Employee extends BaseEntity {
                 ", department=" + department +
                 ", id=" + id +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (!Objects.equals(firstName, employee.firstName)) return false;
+        if (!Objects.equals(surname, employee.surname)) return false;
+        return Objects.equals(telephone, employee.telephone);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName != null ? firstName.hashCode() : 0;
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
+        return result;
     }
 }

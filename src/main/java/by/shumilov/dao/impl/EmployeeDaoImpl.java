@@ -25,6 +25,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
     private static final String SQL_DELETE_EMPLOYEE_BY_ID =
             "DELETE FROM employees WHERE id = ?;";
 
+    private static final String SQL_DELETE_EMPLOYEE_FROM_EMPLOYEES_POSITIONS = "" +
+            "DELETE FROM employees_positions WHERE employee_id = ?";
+
     private static final String SQL_SAVE_EMPLOYEE =
             "INSERT INTO employees (name, surname, telephone, department_id)\n" +
                     "VALUES (?, ?, ?, ?)";
@@ -58,7 +61,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public Employee findEntityById(Integer id) throws DaoException {
+    public Employee findEntityById(Integer id){
         Employee employeeById = null;
         Connection connection = null;
         PreparedStatement statement = null;
@@ -71,8 +74,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 employeeById = new Employee();
                 setParameters(resultSet, employeeById);
             }
+
         } catch (SQLException e) {
-            throw new DaoException(e);
+            throw new RuntimeException(e);
         } finally {
             close(statement);
             close(connection);
@@ -175,6 +179,31 @@ public class EmployeeDaoImpl implements EmployeeDao {
         }
         return listBySurname;
     }
+
+    @Override
+    public boolean deleteEmployeeFromEmployeesPositionsTable(int employeeId){
+        Connection connection = null;
+        PreparedStatement statement = null;
+        boolean result = false;
+        try {
+            connection = ConnectionCreator.createConnection();
+            statement = connection.prepareStatement(SQL_DELETE_EMPLOYEE_FROM_EMPLOYEES_POSITIONS);
+            statement.setInt(1, employeeId);
+            int i = statement.executeUpdate();
+            if (i > 0) result = true;
+        } catch (SQLException e) {
+            try {
+                throw new DaoException(e);
+            } catch (DaoException ex) {
+                throw new RuntimeException(ex);
+            }
+        } finally {
+            close(statement);
+            close(connection);
+        }
+        return result;
+    }
+
 
     private void setParameters(ResultSet resultSet, Employee employee) throws SQLException {
         employee.setId(resultSet.getInt("id"));

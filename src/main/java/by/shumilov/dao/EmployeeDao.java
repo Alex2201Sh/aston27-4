@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface EmployeeDao extends BaseDao<Integer, Employee> {
     List<Employee> findEmployeeBySurname(String surname) throws DaoException;
+    boolean deleteEmployeeFromEmployeesPositionsTable(int employeeId);
 }
