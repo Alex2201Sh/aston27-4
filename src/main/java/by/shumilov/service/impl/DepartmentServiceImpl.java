@@ -5,7 +5,6 @@ import by.shumilov.dao.DepartmentDao;
 import by.shumilov.dao.exception.DaoException;
 import by.shumilov.dao.impl.DepartmentDaoImpl;
 import by.shumilov.service.DepartmentService;
-import java.util.Collections;
 
 import java.util.List;
 
@@ -15,7 +14,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<Department> findAll() {
-        return Collections.emptyList();
+        try {
+            return departmentDao.findAll();
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -29,17 +32,29 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public boolean delete(Department department) {
-        return false;
+        try {
+            return departmentDao.delete(department);
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public boolean delete(Integer id) {
-        return false;
+        try {
+            return departmentDao.delete(id);
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public boolean create(Department department) {
-        return false;
+        try {
+            return departmentDao.create(department);
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

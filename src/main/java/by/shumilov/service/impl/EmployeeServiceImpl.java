@@ -97,4 +97,14 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new RuntimeException("Something went wrong with during update of employee: " + employee + ". " + e);
         }
     }
+
+    @Override
+    public List<Employee> findEmployeeBySurname(String surname) {
+        try {
+            return employeeDao.findEmployeeBySurname(surname);
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

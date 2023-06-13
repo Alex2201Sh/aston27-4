@@ -2,6 +2,7 @@ package by.shumilov.dao.impl;
 
 import by.shumilov.bean.Department;
 import by.shumilov.bean.Employee;
+import by.shumilov.dao.CommonDaoUtils;
 import by.shumilov.dao.EmployeeDao;
 import by.shumilov.dao.db.ConnectionCreator;
 import by.shumilov.dao.exception.DaoException;
@@ -29,7 +30,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             "DELETE FROM employees_positions WHERE employee_id = ?";
 
     private static final String SQL_SAVE_EMPLOYEE =
-            "INSERT INTO employees (name, surname, telephone, department_id)\n" +
+            "INSERT INTO employees (name, surname, telephone, department_id) " +
                     "VALUES (?, ?, ?, ?)";
 
     private static final String SQL_UPDATE_EMPLOYEE =
@@ -61,7 +62,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public Employee findEntityById(Integer id){
+    public Employee findEntityById(Integer id) {
         Employee employeeById = null;
         Connection connection = null;
         PreparedStatement statement = null;
@@ -91,22 +92,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public boolean delete(Integer id) throws DaoException {
-        Connection connection = null;
-        PreparedStatement statement = null;
-        boolean result = false;
-        try {
-            connection = ConnectionCreator.createConnection();
-            statement = connection.prepareStatement(SQL_DELETE_EMPLOYEE_BY_ID);
-            statement.setInt(1, id);
-            int i = statement.executeUpdate();
-            if (i > 0) result = true;
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        } finally {
-            close(statement);
-            close(connection);
-        }
-        return result;
+        return new CommonDaoUtils().deleteEntityById(id, SQL_DELETE_EMPLOYEE_BY_ID);
     }
 
     @Override
@@ -181,27 +167,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public boolean deleteEmployeeFromEmployeesPositionsTable(int employeeId){
-        Connection connection = null;
-        PreparedStatement statement = null;
-        boolean result = false;
-        try {
-            connection = ConnectionCreator.createConnection();
-            statement = connection.prepareStatement(SQL_DELETE_EMPLOYEE_FROM_EMPLOYEES_POSITIONS);
-            statement.setInt(1, employeeId);
-            int i = statement.executeUpdate();
-            if (i > 0) result = true;
-        } catch (SQLException e) {
-            try {
-                throw new DaoException(e);
-            } catch (DaoException ex) {
-                throw new RuntimeException(ex);
-            }
-        } finally {
-            close(statement);
-            close(connection);
-        }
-        return result;
+    public boolean deleteEmployeeFromEmployeesPositionsTable(int employeeId) {
+        return new CommonDaoUtils()
+                .deleteEntityById(employeeId,
+                        SQL_DELETE_EMPLOYEE_FROM_EMPLOYEES_POSITIONS);
     }
 
 

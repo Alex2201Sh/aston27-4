@@ -14,7 +14,11 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public List<Position> findAll() {
-        return null;
+        try {
+            return positionDao.findAll();
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -28,12 +32,29 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public boolean delete(Position position) {
-        return false;
+        boolean result;
+
+        try {
+            boolean a = positionDao.deletePositionFromEmployeesPositionsTable(position.getId());
+            boolean b = positionDao.delete(position);
+            result = a && b;
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
     }
 
     @Override
     public boolean delete(Integer id) {
-        return false;
+        boolean result;
+        try {
+            boolean a = positionDao.deletePositionFromEmployeesPositionsTable(id);
+            boolean b = positionDao.delete(id);
+            result = a && b;
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
     }
 
     @Override

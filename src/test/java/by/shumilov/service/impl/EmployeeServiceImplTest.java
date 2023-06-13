@@ -82,4 +82,11 @@ class EmployeeServiceImplTest {
         Employee updatedEmployee = employeeService.update(testEmployee);
         assertThat(updatedEmployee).isEqualTo(testEmployee);
     }
+
+    @Test
+    void findEmployeeBySurname() {
+        testDataBuilder.fillTables();
+        List<Employee> testIvanov = employeeService.findEmployeeBySurname("TESTIvanov");
+        assertThat(testIvanov.stream().findAny().get()).isInstanceOf(Employee.class);
+    }
 }

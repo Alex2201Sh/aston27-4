@@ -8,4 +8,6 @@ import java.util.List;
 public interface PositionDao extends BaseDao<Integer, Position> {
     List<Position> findPositionByEmployeeId(int employeeId) throws DaoException;
 
+    boolean deletePositionFromEmployeesPositionsTable(int positionId);
+
 }

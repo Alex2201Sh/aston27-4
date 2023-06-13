@@ -1,30 +1,56 @@
 package by.shumilov.dao.impl;
 
 import by.shumilov.bean.Position;
+import by.shumilov.dao.CommonDaoUtils;
 import by.shumilov.dao.PositionDao;
 import by.shumilov.dao.db.ConnectionCreator;
 import by.shumilov.dao.exception.DaoException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PositionDaoImpl implements PositionDao {
 
+    private static final String SQL_SELECT_ALL_POSITIONS =
+            "SELECT id, name FROM public.positions;";
+
     private static final String SQL_SELECT_POSITION_BY_ID =
             "SELECT id, name FROM public.positions WHERE id = ?;";
+
+    private static final String SQL_DELETE_POSITION_BY_ID =
+            "DELETE FROM positions WHERE id = ?";
 
     private static final String SQL_SELECT_POSITIONS_BY_EMPLOYEE_ID =
             "SELECT p.id as position_id, p.name as position_name FROM public.positions p\n " +
                     "LEFT JOIN employees_positions ep on p.id = ep.position_id " +
                     "WHERE ep.employee_id = ?";
 
+    private static final String SQL_DELETE_POSITION_FROM_EMPLOYEES_POSITIONS = "" +
+            "DELETE FROM employees_positions WHERE position_id = ?";
+
     @Override
     public List<Position> findAll() throws DaoException {
-        return null;
+        List<Position> positionList = new ArrayList<>();
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = ConnectionCreator.createConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_POSITIONS);
+            while (resultSet.next()) {
+                Position position = new Position();
+                position.setId(resultSet.getInt("id"));
+                position.setName(resultSet.getString("name"));
+                positionList.add(position);
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            close(statement);
+            close(connection);
+        }
+        return positionList;
     }
 
     @Override
@@ -53,12 +79,12 @@ public class PositionDaoImpl implements PositionDao {
 
     @Override
     public boolean delete(Position position) throws DaoException {
-        return false;
+        return delete(position.getId());
     }
 
     @Override
     public boolean delete(Integer id) throws DaoException {
-        return false;
+        return new CommonDaoUtils().deleteEntityById(id, SQL_DELETE_POSITION_BY_ID);
     }
 
     @Override
@@ -94,5 +120,10 @@ public class PositionDaoImpl implements PositionDao {
             close(connection);
         }
         return listByEmployee;
+    }
+
+    @Override
+    public boolean deletePositionFromEmployeesPositionsTable(int positionId) {
+        return new CommonDaoUtils().deleteEntityById(positionId, SQL_DELETE_POSITION_FROM_EMPLOYEES_POSITIONS);
     }
 }
