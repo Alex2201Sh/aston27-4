@@ -2,18 +2,30 @@ package by.shumilov.parser;
 
 import by.shumilov.bean.Department;
 import by.shumilov.bean.Employee;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.Collections;
 
 class JsonParserTest {
 
+    private final JsonParser parser = new JsonParser();
+
     @Test
     void parseObjectToJson() {
-        JsonParser parser = new JsonParser();
-        Employee firstEmployee = new Employee("Sasha", "Beliy", "+375441234567",
-                new Department("Administration"),new ArrayList<>());
-        String s = parser.parseObjectToJson(firstEmployee);
-        System.out.println(s);
+        Employee testEmployee = new Employee("testName", "testSurname", "testTelephone",
+                new Department("testDepartment"), Collections.emptyList());
+        String expected = "{\"id\":0,\"firstName\":\"testName\",\"surname\":\"testSurname\",\"telephone\":\"testTelephone\",\"department\":{\"id\":0,\"name\":\"testDepartment\"},\"positionList\":[]}";
+        String actual = parser.parseObjectToJson(testEmployee);
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void parseJsonToEmployee() {
+        String testJson = "{\"id\":0,\"firstName\":\"testName\",\"surname\":\"testSurname\",\"telephone\":\"testTelephone\",\"department\":{\"id\":0,\"name\":\"testDepartment\"},\"positionList\":[]}";
+        Employee expectedEmployee = new Employee("testName", "testSurname", "testTelephone",
+                new Department("testDepartment"), Collections.emptyList());
+        Employee actualEmployee = parser.parseJsonToObject(testJson);
+        Assertions.assertThat(actualEmployee).isEqualTo(expectedEmployee);
     }
 }
