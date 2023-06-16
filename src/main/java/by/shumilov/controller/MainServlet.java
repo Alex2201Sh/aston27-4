@@ -1,6 +1,6 @@
 package by.shumilov.controller;
 
-import by.shumilov.bean.Employee;
+import by.shumilov.entity.Employee;
 import by.shumilov.parser.JsonParser;
 import by.shumilov.service.EmployeeService;
 import by.shumilov.service.impl.EmployeeServiceImpl;

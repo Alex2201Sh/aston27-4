@@ -1,6 +1,6 @@
 package by.shumilov.dao;
 
-import by.shumilov.bean.BaseEntity;
+import by.shumilov.entity.BaseEntity;
 import by.shumilov.dao.exception.DaoException;
 
 import java.sql.Connection;

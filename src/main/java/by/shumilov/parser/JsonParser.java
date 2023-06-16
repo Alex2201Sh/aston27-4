@@ -1,6 +1,6 @@
 package by.shumilov.parser;
 
-import by.shumilov.bean.Employee;
+import by.shumilov.entity.Employee;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;

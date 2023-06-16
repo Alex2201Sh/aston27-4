@@ -1,7 +1,7 @@
 package by.shumilov.parser;
 
-import by.shumilov.bean.Department;
-import by.shumilov.bean.Employee;
+import by.shumilov.entity.Department;
+import by.shumilov.entity.Employee;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

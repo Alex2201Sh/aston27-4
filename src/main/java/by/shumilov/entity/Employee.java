@@ -1,4 +1,4 @@
-package by.shumilov.bean;
+package by.shumilov.entity;
 
 import java.util.List;
 import java.util.Objects;

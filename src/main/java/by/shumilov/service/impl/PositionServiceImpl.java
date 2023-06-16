@@ -1,6 +1,6 @@
 package by.shumilov.service.impl;
 
-import by.shumilov.bean.Position;
+import by.shumilov.entity.Position;
 import by.shumilov.dao.PositionDao;
 import by.shumilov.dao.exception.DaoException;
 import by.shumilov.dao.impl.PositionDaoImpl;

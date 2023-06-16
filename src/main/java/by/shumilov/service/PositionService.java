@@ -1,6 +1,6 @@
 package by.shumilov.service;
 
-import by.shumilov.bean.Position;
+import by.shumilov.entity.Position;
 
 import java.util.List;
 

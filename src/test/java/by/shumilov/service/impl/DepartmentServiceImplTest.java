@@ -1,7 +1,7 @@
 package by.shumilov.service.impl;
 
 import by.shumilov.TestDataBuilder;
-import by.shumilov.bean.Department;
+import by.shumilov.entity.Department;
 import by.shumilov.service.DepartmentService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,6 +1,6 @@
 package by.shumilov.service.impl;
 
-import by.shumilov.bean.Employee;
+import by.shumilov.entity.Employee;
 import by.shumilov.dao.EmployeeDao;
 import by.shumilov.dao.exception.DaoException;
 import by.shumilov.dao.impl.EmployeeDaoImpl;

@@ -1,6 +1,6 @@
 package by.shumilov.service;
 
-import by.shumilov.bean.Employee;
+import by.shumilov.entity.Employee;
 
 import java.util.List;
 

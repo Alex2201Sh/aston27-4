@@ -1,6 +1,6 @@
 package by.shumilov.dao;
 
-import by.shumilov.bean.Position;
+import by.shumilov.entity.Position;
 import by.shumilov.dao.exception.DaoException;
 
 import java.util.List;

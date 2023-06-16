@@ -1,24 +1,23 @@
-package by.shumilov.bean;
+package by.shumilov.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
-import java.util.Objects;
 
-public class Department extends BaseEntity {
+public class Position extends BaseEntity {
     private String name;
 
     @JsonIgnore
     private List<Employee> employeeList;
 
-    public Department() {
+    public Position() {
     }
 
-    public Department(String name) {
+    public Position(String name) {
         this.name = name;
     }
 
-    public Department(String name, List<Employee> employeeList) {
+    public Position(String name, List<Employee> employeeList) {
         this.name = name;
         this.employeeList = employeeList;
     }
@@ -41,24 +40,9 @@ public class Department extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Department{" +
+        return "Position{" +
                 "name='" + name + '\'' +
                 ", id=" + id +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Department that = (Department) o;
-
-        return Objects.equals(name, that.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
     }
 }

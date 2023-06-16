@@ -1,7 +1,7 @@
 package by.shumilov.service.impl;
 
 import by.shumilov.TestDataBuilder;
-import by.shumilov.bean.Position;
+import by.shumilov.entity.Position;
 import by.shumilov.service.PositionService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,4 +1,4 @@
-package by.shumilov.bean;
+package by.shumilov.entity;
 
 public abstract class BaseEntity {
     int id;

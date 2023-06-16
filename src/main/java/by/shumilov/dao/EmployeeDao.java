@@ -1,6 +1,6 @@
 package by.shumilov.dao;
 
-import by.shumilov.bean.Employee;
+import by.shumilov.entity.Employee;
 import by.shumilov.dao.exception.DaoException;
 
 import java.util.List;

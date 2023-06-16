@@ -1,6 +1,6 @@
 package by.shumilov.dao.impl;
 
-import by.shumilov.bean.Position;
+import by.shumilov.entity.Position;
 import by.shumilov.dao.CommonDaoUtils;
 import by.shumilov.dao.PositionDao;
 import by.shumilov.dao.db.ConnectionCreator;

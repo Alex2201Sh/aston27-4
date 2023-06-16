@@ -1,7 +1,7 @@
 package by.shumilov.dao.impl;
 
-import by.shumilov.bean.Department;
-import by.shumilov.bean.Employee;
+import by.shumilov.entity.Department;
+import by.shumilov.entity.Employee;
 import by.shumilov.dao.CommonDaoUtils;
 import by.shumilov.dao.EmployeeDao;
 import by.shumilov.dao.db.ConnectionCreator;
